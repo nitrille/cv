@@ -11,6 +11,9 @@ img_path = os.path.join(os.path.dirname(__file__), 'test.jpg')
 # Load image
 img = cv2.imread(img_path)
 
+# Convert it to RGB
+# img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
 # Split the image into the three colour channels
 red, green, blue = cv2.split(img)
 
