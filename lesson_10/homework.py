@@ -27,9 +27,13 @@ Compare the results:
 
 # Imports
 import cv2
+import uuid
 
 # Path to video file
 VIDEO = './data/test.mov'
+
+# Output folder
+OUTPUT = './result'
 
 # OpenCV trackers
 OPENCV_OBJECT_TRACKERS = {
@@ -40,7 +44,7 @@ OPENCV_OBJECT_TRACKERS = {
 
 # Defined type of trackers
 TRACKER_1 = 'csrt'
-TRACKER_2 = 'boosting'
+TRACKER_2 = 'kcf'
 
 # Defined colors of trackers
 TRACKER_1_COLOR = (255, 0, 0)
@@ -87,6 +91,7 @@ def get_bbox(vs):
 bbox = get_bbox(vs)
 
 print(f'Bounding box: {bbox}')
+print(f'Press "s" for save frame to file')
 print(f'Press "q" for exit')
 print(f'Press any key to see next frame...')
 
@@ -124,6 +129,9 @@ while True:
         vs.release()
         cv2.destroyAllWindows()
         break
+    elif key == ord("s"):
+        image_path = OUTPUT + '/' + uuid.uuid4().hex + '.jpg'
+        cv2.imwrite(image_path, frame)
 
     cv2.destroyAllWindows()
 
